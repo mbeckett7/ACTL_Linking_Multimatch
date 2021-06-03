@@ -1,0 +1,206 @@
+[
+  {
+    "op": "core/row-removal",
+    "engineConfig": {
+      "facets": [
+        {
+          "type": "list",
+          "name": "Vocabulary",
+          "expression": "value",
+          "columnName": "Vocabulary",
+          "invert": true,
+          "omitBlank": false,
+          "omitError": false,
+          "selection": [
+            {
+              "v": {
+                "v": "LCNAMES",
+                "l": "LCNAMES"
+              }
+            },
+            {
+              "v": {
+                "v": "LCSH",
+                "l": "LCSH"
+              }
+            }
+          ],
+          "selectBlank": false,
+          "selectError": false
+        }
+      ],
+      "mode": "row-based"
+    },
+    "description": "Remove rows"
+  },
+  {
+    "op": "core/column-addition",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "baseColumnName": "MMS ID",
+    "expression": "join ([coalesce(cells['MMS ID'].value,''),coalesce(cells['BIB Heading Before'].value,''),coalesce(cells['Field'].value,'')],'')",
+    "onError": "keep-original",
+    "newColumnName": "Deduplication",
+    "columnInsertIndex": 3,
+    "description": "Create column Deduplication at index 3 based on column MMS ID using expression join ([coalesce(cells['MMS ID'].value,''),coalesce(cells['BIB Heading Before'].value,''),coalesce(cells['Field'].value,'')],'')"
+  },
+  {
+    "op": "core/row-reorder",
+    "mode": "row-based",
+    "sorting": {
+      "criteria": [
+        {
+          "valueType": "string",
+          "column": "Deduplication",
+          "blankPosition": 2,
+          "errorPosition": 1,
+          "reverse": false,
+          "caseSensitive": false
+        }
+      ]
+    },
+    "description": "Reorder rows"
+  },
+  {
+    "op": "core/blank-down",
+    "engineConfig": {
+      "facets": [
+        {
+          "type": "list",
+          "name": "Deduplication",
+          "expression": "isBlank(value)",
+          "columnName": "Deduplication",
+          "invert": false,
+          "omitBlank": false,
+          "omitError": false,
+          "selection": [
+            {
+              "v": {
+                "v": false,
+                "l": "false"
+              }
+            }
+          ],
+          "selectBlank": false,
+          "selectError": false
+        }
+      ],
+      "mode": "row-based"
+    },
+    "columnName": "Deduplication",
+    "description": "Blank down cells in column Deduplication"
+  },
+  {
+    "op": "core/row-removal",
+    "engineConfig": {
+      "facets": [
+        {
+          "type": "list",
+          "name": "Deduplication",
+          "expression": "isBlank(value)",
+          "columnName": "Deduplication",
+          "invert": false,
+          "omitBlank": false,
+          "omitError": false,
+          "selection": [
+            {
+              "v": {
+                "v": true,
+                "l": "true"
+              }
+            }
+          ],
+          "selectBlank": false,
+          "selectError": false
+        },
+        {
+          "type": "list",
+          "name": "MMS ID",
+          "expression": "isBlank(value)",
+          "columnName": "MMS ID",
+          "invert": false,
+          "omitBlank": false,
+          "omitError": false,
+          "selection": [
+            {
+              "v": {
+                "v": false,
+                "l": "false"
+              }
+            }
+          ],
+          "selectBlank": false,
+          "selectError": false
+        }
+      ],
+      "mode": "row-based"
+    },
+    "description": "Remove rows"
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "Deduplication",
+    "description": "Remove column Deduplication"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "Change Date",
+    "expression": "grel:value.datePart(\"year\")+\"-\"+value.datePart(\"month\")+\"-\"+value.datePart(\"day\")",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column Change Date using expression grel:value.datePart(\"year\")+\"-\"+value.datePart(\"month\")+\"-\"+value.datePart(\"day\")"
+  },
+  {
+    "op": "core/column-addition",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "baseColumnName": "Field",
+    "expression": "grel:\"X\"+value.substring(1,3)",
+    "onError": "set-to-blank",
+    "newColumnName": "HeadingType",
+    "columnInsertIndex": 6,
+    "description": "Create column HeadingType at index 6 based on column Field using expression grel:\"X\"+value.substring(1,3)"
+  },
+  {
+    "op": "core/row-reorder",
+    "mode": "row-based",
+    "sorting": {
+      "criteria": [
+        {
+          "valueType": "string",
+          "column": "Vocabulary",
+          "blankPosition": 2,
+          "errorPosition": 1,
+          "reverse": false,
+          "caseSensitive": false
+        },
+        {
+          "valueType": "string",
+          "column": "HeadingType",
+          "blankPosition": 2,
+          "errorPosition": 1,
+          "reverse": false,
+          "caseSensitive": false
+        },
+        {
+          "valueType": "string",
+          "column": "BIB Heading Before",
+          "blankPosition": 2,
+          "errorPosition": 1,
+          "reverse": false,
+          "caseSensitive": false
+        }
+      ]
+    },
+    "description": "Reorder rows"
+  }
+]
