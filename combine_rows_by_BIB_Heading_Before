@@ -1,0 +1,381 @@
+[
+  {
+    "op": "core/column-move",
+    "columnName": "BIB Heading Before",
+    "index": 0,
+    "description": "Move column BIB Heading Before to position 0"
+  },
+  {
+    "op": "core/blank-down",
+    "engineConfig": {
+      "facets": [
+        {
+          "type": "list",
+          "name": "Flagged Rows",
+          "expression": "row.flagged",
+          "columnName": "",
+          "invert": false,
+          "omitBlank": false,
+          "omitError": false,
+          "selection": [
+            {
+              "v": {
+                "v": false,
+                "l": "false"
+              }
+            }
+          ],
+          "selectBlank": false,
+          "selectError": false
+        }
+      ],
+      "mode": "row-based"
+    },
+    "columnName": "BIB Heading Before",
+    "description": "Blank down cells in column BIB Heading Before"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [
+        {
+          "type": "list",
+          "name": "Flagged Rows",
+          "expression": "row.flagged",
+          "columnName": "",
+          "invert": false,
+          "omitBlank": false,
+          "omitError": false,
+          "selection": [
+            {
+              "v": {
+                "v": false,
+                "l": "false"
+              }
+            }
+          ],
+          "selectBlank": false,
+          "selectError": false
+        }
+      ],
+      "mode": "row-based"
+    },
+    "columnName": "Title",
+    "expression": "grel:if(row.record.cells.Title.length()>49,\"[Heading appears on \" + row.record.cells.Title.length() + \" titles - too many to display here. Please browse in Alma or Primo.]\",row.record.cells.Title.value.join('\\n'))",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column Title using expression grel:if(row.record.cells.Title.length()>49,\"[Heading appears on \" + row.record.cells.Title.length() + \" titles - too many to display here. Please browse in Alma or Primo.]\",row.record.cells.Title.value.join('\\n'))"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [
+        {
+          "type": "list",
+          "name": "Flagged Rows",
+          "expression": "row.flagged",
+          "columnName": "",
+          "invert": false,
+          "omitBlank": false,
+          "omitError": false,
+          "selection": [
+            {
+              "v": {
+                "v": false,
+                "l": "false"
+              }
+            }
+          ],
+          "selectBlank": false,
+          "selectError": false
+        }
+      ],
+      "mode": "row-based"
+    },
+    "columnName": "Publication date",
+    "expression": "grel:if(row.record.cells.Title.length()>49,\"All lines not displayed; Publication date range: \\n\" + row.record.cells['Publication date'].value.uniques().sort()[0] + ' - ' + row.record.cells['Publication date'].value.uniques().sort()[-1],row.record.cells['Publication date'].value.join('\\n'))",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column Publication date using expression grel:if(row.record.cells.Title.length()>49,\"All lines not displayed; Publication date range: \\n\" + row.record.cells['Publication date'].value.uniques().sort()[0] + ' - ' + row.record.cells['Publication date'].value.uniques().sort()[-1],row.record.cells['Publication date'].value.join('\\n'))"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [
+        {
+          "type": "list",
+          "name": "Flagged Rows",
+          "expression": "row.flagged",
+          "columnName": "",
+          "invert": false,
+          "omitBlank": false,
+          "omitError": false,
+          "selection": [
+            {
+              "v": {
+                "v": false,
+                "l": "false"
+              }
+            }
+          ],
+          "selectBlank": false,
+          "selectError": false
+        }
+      ],
+      "mode": "row-based"
+    },
+    "columnName": "First Subject",
+    "expression": "grel:if(row.record.cells.Title.length()>49,if(row.record.cells['First Subject'].value.uniques().length()>49,\"Too many unique values to display.\",\"All lines not displayed; unique values found:\\n\"+row.record.cells['First Subject'].value.uniques().join('\\n'))\n,row.record.cells['First Subject'].value.join('\\n'))",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column First Subject using expression grel:if(row.record.cells.Title.length()>49,if(row.record.cells['First Subject'].value.uniques().length()>49,\"Too many unique values to display.\",\"All lines not displayed; unique values found:\\n\"+row.record.cells['First Subject'].value.uniques().join('\\n'))\n,row.record.cells['First Subject'].value.join('\\n'))"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [
+        {
+          "type": "list",
+          "name": "Flagged Rows",
+          "expression": "row.flagged",
+          "columnName": "",
+          "invert": false,
+          "omitBlank": false,
+          "omitError": false,
+          "selection": [
+            {
+              "v": {
+                "v": false,
+                "l": "false"
+              }
+            }
+          ],
+          "selectBlank": false,
+          "selectError": false
+        }
+      ],
+      "mode": "row-based"
+    },
+    "columnName": "Language",
+    "expression": "grel:if(row.record.cells.Title.length()>49,\"All lines not displayed; unique values found:\\n\" + row.record.cells.Language.value.uniques().join('\\n'),row.record.cells.Language.value.join('\\n'))",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column Language using expression grel:if(row.record.cells.Title.length()>49,\"All lines not displayed; unique values found:\\n\" + row.record.cells.Language.value.uniques().join('\\n'),row.record.cells.Language.value.join('\\n'))"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [
+        {
+          "type": "list",
+          "name": "Flagged Rows",
+          "expression": "row.flagged",
+          "columnName": "",
+          "invert": false,
+          "omitBlank": false,
+          "omitError": false,
+          "selection": [
+            {
+              "v": {
+                "v": false,
+                "l": "false"
+              }
+            }
+          ],
+          "selectBlank": false,
+          "selectError": false
+        }
+      ],
+      "mode": "row-based"
+    },
+    "columnName": "Country",
+    "expression": "grel:if(row.record.cells.Title.length()>49,\"All lines not displayed; unique values found:\\n\" + row.record.cells.Country.value.uniques().join('\\n'),row.record.cells.Country.value.join('\\n'))",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column Country using expression grel:if(row.record.cells.Title.length()>49,\"All lines not displayed; unique values found:\\n\" + row.record.cells.Country.value.uniques().join('\\n'),row.record.cells.Country.value.join('\\n'))"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [
+        {
+          "type": "list",
+          "name": "Flagged Rows",
+          "expression": "row.flagged",
+          "columnName": "",
+          "invert": false,
+          "omitBlank": false,
+          "omitError": false,
+          "selection": [
+            {
+              "v": {
+                "v": false,
+                "l": "false"
+              }
+            }
+          ],
+          "selectBlank": false,
+          "selectError": false
+        }
+      ],
+      "mode": "row-based"
+    },
+    "columnName": "Holding Libraries",
+    "expression": "grel:if(row.record.cells.Title.length()>49,if(row.record.cells['Holding Libraries'].value.uniques().length()>49,\"Too many unique values to display.\",\"All lines not displayed; unique values found:\\n\"+row.record.cells['Holding Libraries'].value.uniques().join('\\n'))\n,row.record.cells['Holding Libraries'].value.join('\\n'))",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column Holding Libraries using expression grel:if(row.record.cells.Title.length()>49,if(row.record.cells['Holding Libraries'].value.uniques().length()>49,\"Too many unique values to display.\",\"All lines not displayed; unique values found:\\n\"+row.record.cells['Holding Libraries'].value.uniques().join('\\n'))\n,row.record.cells['Holding Libraries'].value.join('\\n'))"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [
+        {
+          "type": "list",
+          "name": "Flagged Rows",
+          "expression": "row.flagged",
+          "columnName": "",
+          "invert": false,
+          "omitBlank": false,
+          "omitError": false,
+          "selection": [
+            {
+              "v": {
+                "v": false,
+                "l": "false"
+              }
+            }
+          ],
+          "selectBlank": false,
+          "selectError": false
+        }
+      ],
+      "mode": "row-based"
+    },
+    "columnName": "Field",
+    "expression": "grel:if(row.record.cells.Title.length()>49,\"All lines not displayed; unique values found:\\n\" + row.record.cells.Field.value.uniques().sort().join('\\n'),row.record.cells.Field.value.join('\\n'))",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column Field using expression grel:if(row.record.cells.Title.length()>49,\"All lines not displayed; unique values found:\\n\" + row.record.cells.Field.value.uniques().sort().join('\\n'),row.record.cells.Field.value.join('\\n'))"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [
+        {
+          "type": "list",
+          "name": "Flagged Rows",
+          "expression": "row.flagged",
+          "columnName": "",
+          "invert": false,
+          "omitBlank": false,
+          "omitError": false,
+          "selection": [
+            {
+              "v": {
+                "v": false,
+                "l": "false"
+              }
+            }
+          ],
+          "selectBlank": false,
+          "selectError": false
+        }
+      ],
+      "mode": "row-based"
+    },
+    "columnName": "Triage",
+    "expression": "jython:from collections import Counter \nx = row.record.cells['Language/area group'].value \ncount = Counter(x) \nfreq_list = count.values() \nmax_cnt = max(freq_list) \ntotal = freq_list.count(max_cnt) \nmost_commons = count.most_common(total) \nreturn \"|\".join([elem[0] for elem in most_commons])",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column Triage using expression jython:from collections import Counter \nx = row.record.cells['Language/area group'].value \ncount = Counter(x) \nfreq_list = count.values() \nmax_cnt = max(freq_list) \ntotal = freq_list.count(max_cnt) \nmost_commons = count.most_common(total) \nreturn \"|\".join([elem[0] for elem in most_commons])"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [
+        {
+          "type": "list",
+          "name": "Flagged Rows",
+          "expression": "row.flagged",
+          "columnName": "",
+          "invert": false,
+          "omitBlank": false,
+          "omitError": false,
+          "selection": [
+            {
+              "v": {
+                "v": false,
+                "l": "false"
+              }
+            }
+          ],
+          "selectBlank": false,
+          "selectError": false
+        }
+      ],
+      "mode": "row-based"
+    },
+    "columnName": "Triage",
+    "expression": "grel:if( and( value.split('|').length()==2, or(value.contains('Judaica'),value.contains('Middle East'),value.contains('Slavic'),value.contains('Greek'),value.contains('Korean')), or(value.contains('AARGH'),value.contains('Unassigned'),value.contains('Department')) ), filter(value.split('|'),v,inArray(['Judaica','Middle East','Slavic','Greek','Korean'],v)).join(''), value )",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column Triage using expression grel:if( and( value.split('|').length()==2, or(value.contains('Judaica'),value.contains('Middle East'),value.contains('Slavic'),value.contains('Greek'),value.contains('Korean')), or(value.contains('AARGH'),value.contains('Unassigned'),value.contains('Department')) ), filter(value.split('|'),v,inArray(['Judaica','Middle East','Slavic','Greek','Korean'],v)).join(''), value )"
+  },
+  {
+    "op": "core/row-removal",
+    "engineConfig": {
+      "facets": [
+        {
+          "type": "list",
+          "name": "Flagged Rows",
+          "expression": "row.flagged",
+          "columnName": "",
+          "invert": false,
+          "omitBlank": false,
+          "omitError": false,
+          "selection": [
+            {
+              "v": {
+                "v": false,
+                "l": "false"
+              }
+            }
+          ],
+          "selectBlank": false,
+          "selectError": false
+        },
+        {
+          "type": "list",
+          "name": "BIB Heading Before",
+          "expression": "isBlank(value)",
+          "columnName": "BIB Heading Before",
+          "invert": false,
+          "omitBlank": false,
+          "omitError": false,
+          "selection": [
+            {
+              "v": {
+                "v": true,
+                "l": "true"
+              }
+            }
+          ],
+          "selectBlank": false,
+          "selectError": false
+        }
+      ],
+      "mode": "row-based"
+    },
+    "description": "Remove rows"
+  }
+]
