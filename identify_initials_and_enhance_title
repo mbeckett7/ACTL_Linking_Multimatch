@@ -24,24 +24,5 @@
     "repeat": false,
     "repeatCount": 10,
     "description": "Text transform on cells in column Title using expression grel:forNonBlank(cells[\"Title\"].value,v,v,\"[no title] /\") + ' ' + forNonBlank(cells[\"Statement of responsibility\"].value,v,v,\"[no statement of responsibility]\") + ' | ' + cells['MMS ID'].value\""
-  },
-  {
-    "op": "core/column-reorder",
-    "columnNames": [
-      "AUTH Originating System ID",
-      "BIB Heading Before",
-      "Title",
-      "Publication date",
-      "First Subject",
-      "Language",
-      "Country",
-      "Holding Libraries",
-      "Field",
-      "Vocabulary",
-      "HeadingType",
-      "Change Date",
-      "Language/area group"
-    ],
-    "description": "Reorder columns"
   }
 ]
