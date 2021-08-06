@@ -76,5 +76,31 @@
     "newColumnName": "Publication date",
     "columnInsertIndex": 4,
     "description": "Create column Publication date at index 4 based on column LibraryCloud using expression grel:value.parseXml().select('mods|dateIssued')[0].xmlText()"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "record-based"
+    },
+    "columnName": "BIB Heading Before",
+    "expression": "grel:if(and(or(value.contains(/[A-Z]\\./),value.contains(/[A-Z]\\s/)),not(value.contains(/[A-Za-z]{3,}/))), \"Initials: \" + value,value)",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column BIB Heading Before using expression grel:if(and(or(value.contains(/[A-Z]\\./),value.contains(/[A-Z]\\s/)),not(value.contains(/[A-Za-z]{3,}/))), \"Initials: \" + value,value)"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "Title",
+    "expression": "grel:forNonBlank(cells[\"Title\"].value,v,v,\"[no title] /\") + ' ' + forNonBlank(cells[\"Statement of responsibility\"].value,v,v,\"[no statement of responsibility]\") + ' | ' + cells['MMS ID'].value\"",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column Title using expression grel:forNonBlank(cells[\"Title\"].value,v,v,\"[no title] /\") + ' ' + forNonBlank(cells[\"Statement of responsibility\"].value,v,v,\"[no statement of responsibility]\") + ' | ' + cells['MMS ID'].value\""
   }
 ]
