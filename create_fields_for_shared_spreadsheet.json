@@ -63,5 +63,18 @@
     "newColumnName": "Notes",
     "columnInsertIndex": 5,
     "description": "Create column Notes at index 5 based on column BIB Heading Before using expression grel:''"
+  },
+    {
+    "op": "core/column-addition",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "baseColumnName": "BIB Heading Before",
+    "expression": "grel:''",
+    "onError": "set-to-blank",
+    "newColumnName": "AUTH already fixed?",
+    "columnInsertIndex": 5,
+    "description": "Create column AUTH already fixed? at index 5 based on column BIB Heading Before using expression grel:''"
   }
 ]
