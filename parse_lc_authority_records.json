@@ -24,5 +24,10 @@
     "newColumnName": "Worldcat AUTH link",
     "columnInsertIndex": 1,
     "description": "Create column Worldcat AUTH link at index 1 based on column AUTH Originating System ID using expression grel:if(isNonBlank(value),'http://www.worldcat.org/identities/lccn-' + value.replace(/\\s/,''),'[no linked AUTH]')"
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "LC API",
+    "description": "Remove column LC API"
   }
 ]
