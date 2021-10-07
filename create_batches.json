@@ -6,11 +6,11 @@
       "mode": "row-based"
     },
     "columnName": "Change Date",
-    "expression": "grel:value.substring(4,7)",
+    "expression": "grel:value.substring(0,7)",
     "onError": "keep-original",
     "repeat": false,
     "repeatCount": 10,
-    "description": "Text transform on cells in column Change Date using expression grel:value.substring(4,7)"
+    "description": "Text transform on cells in column Change Date using expression grel:value.substring(0,7)"
   },
   {
     "op": "core/column-addition",
