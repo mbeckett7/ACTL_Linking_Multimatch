@@ -22,8 +22,8 @@
     "expression": "grel:if(and(inArray(['AARGH','Judaica','Middle East','Slavic','Greek','Korean'],cells.Triage.value),not(cells['BIB Heading Before'].value.startsWith('Initials:'))),cells.Triage.value + ' | ' + cells['Change Date'].value,'Not processed'+ ' | ' + cells['Change Date'].value)",
     "onError": "set-to-blank",
     "newColumnName": "Batch",
-    "columnInsertIndex": 22,
-    "description": "Create column Batch at index 22 based on column Triage using expression grel:if(and(inArray(['AARGH','Judaica','Middle East','Slavic','Greek','Korean'],cells.Triage.value),not(cells['BIB Heading Before'].value.startsWith('Initials:'))),cells.Triage.value + ' | ' + cells['Change Date'].value,'Not processed'+ ' | ' + cells['Change Date'].value)"
+    "columnInsertIndex": 0,
+    "description": "Create column Batch at index 0 based on column Triage using expression grel:if(and(inArray(['AARGH','Judaica','Middle East','Slavic','Greek','Korean'],cells.Triage.value),not(cells['BIB Heading Before'].value.startsWith('Initials:'))),cells.Triage.value + ' | ' + cells['Change Date'].value,'Not processed'+ ' | ' + cells['Change Date'].value)"
   },
   {
     "op": "core/column-reorder",
@@ -33,10 +33,9 @@
       "BIB Heading Before",
       "670s on linked AUTH",
       "Claimed by",
-      "Needs NACO?",
-      "AUTH already fixed?",
       "# bibs needed fixing?",
       "Done?",
+      "EDIBA?",
       "Title",
       "Publication date",
       "First Subject",
