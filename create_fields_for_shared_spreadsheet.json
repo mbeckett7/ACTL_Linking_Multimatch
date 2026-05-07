@@ -21,9 +21,9 @@
     "baseColumnName": "BIB Heading Before",
     "expression": "grel:''",
     "onError": "set-to-blank",
-    "newColumnName": "# bibs needed fixing?",
+    "newColumnName": "# of headings corrected",
     "columnInsertIndex": 5,
-    "description": "Create column # bibs needed fixing? at index 5 based on column BIB Heading Before using expression grel:''"
+    "description": "Create column # of headings corrected at index 5 based on column BIB Heading Before using expression grel:''"
   },
   {
     "op": "core/column-addition",
